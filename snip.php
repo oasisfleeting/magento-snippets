@@ -101,8 +101,7 @@ Normally, the getChildHtml method is used to render a specific child block. Howe
 
 ```xml
 <!-- existing line --> <block type="page/html_head" name="head" as="head">
-    <!-- new sub-block you're adding --> <block type="core/template" name="mytemplate" as="mytemplate" template="page/mytemplate.phtml"/>
-```
+    <!-- new sub-block you're adding --> <block type="core/template" name="mytemplate" as="mytemplate" template="page/mytemplate.phtml"/>```
 
     to `page.xml`, and then add the `mytemplate.phtml` file. Any block added to the head block will be automatically rendered. (this automatic rendering doesn't apply for all layout blocks, only for blocks where getChildHtml is called without paramaters).
 
@@ -143,8 +142,8 @@ Normally, the getChildHtml method is used to render a specific child block. Howe
     $my_change_config->saveConfig('design/head/demonotice', "1", 'default', 0);
     // turns notice off
     $my_change_config->saveConfig('design/head/demonotice', "0", 'default', 0);
-?>
-```
+?>```
+
 
 ## Changing the Admin URL ##
 
@@ -156,20 +155,20 @@ Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change 
 
         Clear your cache and sessions.
 
-        ## Magento: Mass Exclude/Unexclude Images ##
+## Magento: Mass Exclude/Unexclude Images ##
 
         By default, Magento will check the 'Exclude' box for you on all imported images, making them not show up as a thumbnail under the main product image on the product view.
 
-        ```sql
+```sql
         # Mass Unexclude
         UPDATE`catalog_product_entity_media_gallery_value` SET `disabled` = '0' WHERE `disabled` = '1';
         # Mass Exclude
         UPDATE`catalog_product_entity_media_gallery_value` SET `disabled` = '1' WHERE `disabled` = '0';
-        ```
+```
 
-        ## getBaseUrl – Magento URL Path ##
+## getBaseUrl – Magento URL Path ##
 
-        ```php
+```php
         <?php
         // http://example.com/
         echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
@@ -182,30 +181,30 @@ Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change 
         // http://example.com/skin/
         echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);
         ?>
-        ```
+```
 
-        ## Get The Root Category In Magento ##
+## Get The Root Category In Magento ##
 
-        ```php
+```php
         <?php
         $rootCategoryId = Mage::app()->getStore()->getRootCategoryId();
         $_category = Mage::getModel('catalog/category')->load($rootCategoryId);
         // You can then get all of the top level categories using:
         $_subcategories = $_category->getChildrenCategories();
         ?>
-        ```
+```
 
-        ## Get The Current URL In Magento ##
+## Get The Current URL In Magento ##
 
-        ```php
+```php
         <?php echo Mage::helper('core/url')->getCurrentUrl(); ?>
-        ```
+```
 
-        ## Category Navigation Listings in Magento ##
+## Category Navigation Listings in Magento ##
 
         Make sure the block that you’re working is of the type catalog/navigation. If you’re editing catalog/navigation/left.phtml then you should be okay.
 
-        ```php
+```php
         <div id="leftnav">
             <?php $helper = $this->helper('catalog/category') ?>
             <?php $categories = $this->getStoreCategories() ?>
@@ -233,17 +232,17 @@ Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change 
                 <script type="text/javascript">decorateList('leftnav-tree', 'recursive')</script>
             <?php endif; ?>
         </div>
-        ```
+```
 
-        ## Debug using zend ##
+## Debug using zend ##
 
-        ```php
+```php
         <?php echo Zend_Debug::dump($thing_to_debug, 'debug'); ?>
-        ```
+```
 
-        ## $_GET, $_POST & $_REQUEST Variables ##
+## $_GET, $_POST & $_REQUEST Variables ##
 
-        ```php
+```php
         <?php
         // $_GET
         $productId = Mage::app()->getRequest()->getParam('product_id');
@@ -253,19 +252,19 @@ Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change 
         // You can access individual variables like...
         $productId = $postData['product_id']);
 ?>
-        ```
+```
 
-        ## Get methods of an object ##
+## Get methods of an object ##
 
         First, use `get_class` to get the name of an object's class.
 
-        ```php
+```php
         <?php $class_name = get_class($object); ?>
-        ```
+```
 
         Then, pass that `get_class_methods` to get a list of all the callable methods on an object
 
-        ```php
+```php
         <?php
         $class_name = get_class($object);
         $methods = get_class_methods($class_name);
@@ -274,17 +273,17 @@ Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change 
             var_dump($method);
         }
         ?>
-        ```
+```
 
-        ## Is product purchasable? ##
+## Is product purchasable? ##
 
-        ```php
+```php
         <?php if($_product->isSaleable()) { // do stuff } ?>
-        ```
+```
 
-        ## Load Products by Category ID ##
+## Load Products by Category ID ##
 
-        ```php
+```php
         <?php
         $_category = Mage::getModel('catalog/category')->load(47);
         $_productCollection = $_category->getProductCollection();
@@ -296,11 +295,11 @@ Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change 
             endforeach;
         }
         ?>
-        ```
+```
 
-        ## Update all subscribers into a customer group (e.g. 5) ##
+## Update all subscribers into a customer group (e.g. 5) ##
 
-        ```sql
+```sql
         UPDATE
         customer_entity,
         newsletter_subscriber
@@ -310,13 +309,13 @@ Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change 
         customer_entity.`entity_id` = newsletter_subscriber.`customer_id`
         AND
         newsletter_subscriber.`subscriber_status` = 1;
-        ```
+```
 
-        ## Get associated products
+## Get associated products
 
         In /app/design/frontend/default/site/template/catalog/product/view/type/
 
-        ``` php
+``` php
         <?php $_helper = $this->helper('catalog/output'); ?>
         <?php $_associatedProducts = $this->getAllowProducts() ?>
         <?php //var_dump($_associatedProducts); ?>
@@ -329,11 +328,11 @@ Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change 
                 <br />
             <?php endforeach; ?>
         <?php endif; ?>
-        ```
+```
 
-        ## Get An Array of Country Names/Codes in Magento ##
+## Get An Array of Country Names/Codes in Magento ##
 
-        ```php
+```php
         <?php
         $countryList = Mage::getResourceModel('directory/country_collection')
             ->loadData()
@@ -343,11 +342,11 @@ Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change 
         print_r( $countryList);
         exit('</pre>');
         ?>
-        ```
+```
 
-        ## Create a Country Drop Down in the Frontend of Magento ##
+## Create a Country Drop Down in the Frontend of Magento ##
 
-        ```php
+```php
         <?php
         $_countries = Mage::getResourceModel('directory/country_collection')
             ->loadData()
@@ -362,11 +361,11 @@ Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change 
                 <?php endforeach; ?>
             </select>
         <?php endif; ?>
-        ```
+```
 
-        ## Create a Country Drop Down in the Magento Admin ##
+## Create a Country Drop Down in the Magento Admin ##
 
-        ```php
+```php
         <?php
         $fieldset->addField('country', 'select', array(
             'name'  => 'country',
@@ -374,11 +373,11 @@ Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change 
             'values'    => Mage::getModel('adminhtml/system_config_source_country')->toOptionArray(),
         ));
         ?>
-        ```
+```
 
-        ## Return Product Attributes ##
+## Return Product Attributes ##
 
-        ```php
+```php
         <?php
         $_product->getThisattribute();
         $_product->getAttributeText('thisattribute');
@@ -395,11 +394,11 @@ if ($attr = $_product->getResource()->getAttribute('color')):
     echo $attr->getFrontend()->getValue($_product); // will display: red, green
 endif;
 ?>
-        ```
+```
 
-        ## Cart Data ##
+## Cart Data ##
 
-        ```php
+```php
         <?php
         $cart = Mage::getModel('checkout/cart')->getQuote()->getData();
         print_r($cart);
@@ -411,11 +410,11 @@ endif;
             Zend_Debug::dump($item->debug());
         }
         ?>
-        ```
+```
 
-        ## Get Simple Products of a Configurable Product ##
+## Get Simple Products of a Configurable Product ##
 
-        ```php
+```php
         <?php
         if($_product->getTypeId() == "configurable") {
             $ids = $_product->getTypeInstance()->getUsedProductIds();
@@ -437,11 +436,11 @@ endif;
         <?php
         }
         ?>
-        ```
+```
 
-        ## Turn template hints on/off via database ##
+## Turn template hints on/off via database ##
 
-        ```sql
+```sql
         UPDATE
         `core_config_data`
         SET
@@ -450,18 +449,18 @@ endif;
         `path` = "dev/debug/template_hints"
         OR
         `path` = "dev/debug/template_hints_blocks";
-        ```
+```
 
-        ## Delete all products ##
+## Delete all products ##
 
-        ```sql
+```sql
         DELETE FROM `catalog_product_entity`;
         -- thanks to https://gist.github.com/paales
-        ```
+```
 
-        ## Getting Configurable Product from Simple Product ID in Magento 1.5+ ##
+## Getting Configurable Product from Simple Product ID in Magento 1.5+ ##
 
-        ```php
+```php
         <?php
         $simpleProductId = 465;
         $parentIds = Mage::getResourceSingleton('catalog/product_type_configurable')
@@ -469,4 +468,4 @@ endif;
         $product = Mage::getModel('catalog/product')->load($parentIds[0]);
         echo $product->getId(); // ID = 462 (aka, Parent of 465)
         ?>
-        ```
+```
