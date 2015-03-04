@@ -102,58 +102,57 @@ Normally, the getChildHtml method is used to render a specific child block. Howe
 ```xml
 <!-- existing line --> <block type="page/html_head" name="head" as="head">
     <!-- new sub-block you're adding --> <block type="core/template" name="mytemplate" as="mytemplate" template="page/mytemplate.phtml"/>
-    ...
-    ```
+```
 
     to `page.xml`, and then add the `mytemplate.phtml` file. Any block added to the head block will be automatically rendered. (this automatic rendering doesn't apply for all layout blocks, only for blocks where getChildHtml is called without paramaters).
 
-    ## Check if customer is logged in ##
+## Check if customer is logged in ##
 
-    ```php
+```php
     <?php $logged_in = Mage::getSingleton('customer/session')->isLoggedIn(); // (boolean) ?>
-    ```
+```
 
-    ## Get the current category/product/cms page ##
+## Get the current category/product/cms page ##
 
-    ```php
+```php
     <?php
     $currentCategory = Mage::registry('current_category');
     $currentProduct = Mage::registry('current_product');
     $currentCmsPage = Mage::registry('cms_page');
     ?>
-    ```
+```
 
-    ## Run Magento Code Externally ##
+## Run Magento Code Externally ##
 
-    ```php
-    <?php
+```php
+<?php
     require_once('app/Mage.php'); //Path to Magento
     umask(0);
     Mage::app();
     // Run you code here
-    ?>
-    ```
+?>
+```
 
-    ## Programmatically change Magento’s core config data ##
+## Programmatically change Magento’s core config data ##
 
-    ```php
-    <?php
+```php
+<?php
     // find 'path' in table 'core_config_data' e.g. 'design/head/demonotice'
     $my_change_config = new Mage_Core_Model_Config();
     // turns notice on
     $my_change_config->saveConfig('design/head/demonotice', "1", 'default', 0);
     // turns notice off
     $my_change_config->saveConfig('design/head/demonotice', "0", 'default', 0);
-    ?>
-    ```
+?>
+```
 
-    ## Changing the Admin URL ##
+## Changing the Admin URL ##
 
-    Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change the ‘admin’ part it to something a lot more random, eg:
+Open up the `/app/etc/local.xml` file, locate the `<frontName>` tag, and change the ‘admin’ part it to something a lot more random, eg:
 
-        ```xml
+```xml
         <frontName><![CDATA[supersecret-admin-name]]></frontName>
-        ```
+```
 
         Clear your cache and sessions.
 
