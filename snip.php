@@ -97,13 +97,21 @@ Third approach: If you look at the stock page.html mentioned above, you'll see t
 <?php echo $this->getChildHtml() ?>
 ```
 
-Normally, the getChildHtml method is used to render a specific child block. However, if called with no paramater, getChildHtml will automatically render all the child blocks. That means you can add something like
+Normally, the getChildHtml method is used to render a specific child block. However, 
+if called with no paramater, getChildHtml will automatically render all the child blocks. 
+That means you can add something like.
 
 ```xml
-<!-- existing line --> <block type="page/html_head" name="head" as="head">
-    <!-- new sub-block you're adding --> <block type="core/template" name="mytemplate" as="mytemplate" template="page/mytemplate.phtml"/>```
+<!-- existing line --> 
+<block type="page/html_head" name="head" as="head">
+    <!-- new sub-block you're adding --> 
+    <block type="core/template" name="mytemplate" as="mytemplate" template="page/mytemplate.phtml"/>
+```
 
-    to `page.xml`, and then add the `mytemplate.phtml` file. Any block added to the head block will be automatically rendered. (this automatic rendering doesn't apply for all layout blocks, only for blocks where getChildHtml is called without paramaters).
+    to page.xml, and then add the mytemplate.phtml file. Any block added to the head block will be automatically 
+    rendered. (this automatic rendering doesn't apply for all layout blocks, only for blocks where getChildHtml 
+    is called without paramaters).
+
 
 ## Check if customer is logged in ##
 
