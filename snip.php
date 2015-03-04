@@ -106,6 +106,7 @@ That means you can add something like.
 <block type="page/html_head" name="head" as="head">
     <!-- new sub-block you're adding --> 
     <block type="core/template" name="mytemplate" as="mytemplate" template="page/mytemplate.phtml"/>
+</block>
 ```
 
     to page.xml, and then add the mytemplate.phtml file. Any block added to the head block will be automatically 
