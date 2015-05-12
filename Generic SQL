@@ -1,3 +1,63 @@
+Direct safe SQL queries in Magento using named binding for security:
+
+Step 1: Initialize a resource to interact with the database:
+
+``$read = Mage::getSingleton( 'core/resource' )->getConnection( 'core_read' ); // To read from the database
+$write = Mage::getSingleton( 'core/resource' )->getConnection( 'core_write' ); // To write to the database``
+ 
+
+Step 2: Choose which tables you want to connect with. Using this method also takes care of the problem of prefixed tables on some stores. It’s the safest way to go about this.
+
+``$productTable = Mage::getSingleton( 'core/resource' )->getTableName( 'catalog_product_entity' );``
+ 
+
+Step 3: Prepare your query
+
+``$query = "SELECT product_id FROM " . $productTable . " WHERE created_at BETWEEN :fromdate AND :todate";
+$binds = array(
+	'fromdate' => $unsafePostedValue1,
+	'todate' => $unsafePostedValue2
+);``
+ 
+
+Step 4: Execute your query!
+
+``$result = $read->query( $query, $binds );
+while ( $row = $result->fetch() ) {
+	echo 'Product ID: ' . $row['product_id'] . '<br>';
+}``
+ 
+
+Explanation:
+Our read resource takes our query and looks for something like :this . It then looks for a bind array which it then maps the value of this to :this . What’s more is that it automatically quotes and prepares all the security measures before executing the query. So you don’t need to quote the query at all! In fact, it will give you an error if you quote the query!
+
+ 
+
+Inserting into the database:
+
+Here’s how you insert into the database:
+
+``$query = "INSERT INTO " . $productTable . " SET product_id = :product_id";
+$binds = array(
+	'product_id' => $unsafePostedId
+);
+$write->query( $query, $binds );``
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Generic SQL ##
 
 ## Export Customers SQL ##
