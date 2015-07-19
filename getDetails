@@ -1,0 +1,99 @@
+    class BuildReport {
+
+        public $salesDetails;
+        public $productDetails;
+        public $customerDetails;
+        public $app;
+        public $item;
+
+
+        public function init(){
+            $this->app = Mage::app();
+            umask(0);
+            $this->salesDetails = array();
+            $this->productDetails = array();
+            $this->customerDetails = array();
+        }
+
+        public function setSalesDetails($order){
+            $product_options = array();
+
+            //$ord = $order->getData();
+            $items = $order->getAllItems();
+            $ordDetails = $items[0]->getData();
+
+            foreach ($ordDetails as $key => $val) {
+                $newval = array_values(unserialize($val)['options']);
+                for ($i = 0; $i < count($newval); $i++) {
+                    if (!empty($newval) && is_array(array_values($newval))) {
+                        $product_options[$key][$newval[$i]['label']] = $newval[$i]['value'];
+                    }
+                }
+            }
+
+            if (count($product_options) > 0)
+                $ordDetails['product_options'] = array_values($product_options)[0];
+            else
+                $ordDetails['product_options'] = '';
+
+            $this->salesDetails = array_merge($this->salesDetails,$ordDetails);
+            $this->salesDetails['invoice_number'] = $order->getIncrementId();
+            ksort($this->salesDetails);
+        }
+
+        public function setProductDetails($product){
+            $prod = (array)$product->getData();
+            foreach($prod as $key=>$val){
+                $prod[$key] = strip_tags($val);
+            }
+            ksort($prod);
+            $this->productDetails = $prod;
+        }
+
+        public function setCustomerDetails($customer){
+            $custData = $customer->getData();
+            //$cus = Mage::getModel('customer/customer')->load(20461)->getData();
+
+            unset($custData['password_hash']);
+            $custGroup = array('Not Logged In'=>'0','Retail Customer'=>'1','Wholesale Customer'=>'2');
+            $custData['group_id'] = array_search($custData['group_id'],$custGroup);
+
+
+
+            #create customer address array
+            $customerAddress = array();
+            #loop to create the array
+            foreach ($customer->getAddresses() as $address)
+            {
+                $add = $address->toArray();
+                ksort($add);
+                $customerAddress[] = $add;
+            }
+
+            $cust['data'] = $custData;
+            $cust['address'] = $customerAddress;
+
+            $this->customerDetails = $cust;
+
+        }
+      }
+      
+        Mage::app();
+        umask(0);
+        $report = new BuildReport();
+        $report->init();
+
+        $ordersids = Mage::getModel('sales/order')->getCollection()
+            ->addAttributeToSelect('*')->addAttributeToSort('increment_id', DESC)->setPageSize(10);
+
+        foreach ($ordersids as $orders) {
+
+            $order = Mage::getModel('sales/order')->load($orders->getData('entity_id'));
+            $report->setSalesDetails($order);
+
+            $product = Mage::getModel('catalog/product')->load($report->salesDetails['product_id']);
+            $report->setProductDetails($product);
+
+            $customer = Mage::getModel('customer/customer')->load($orders->getData('customer_id'));
+            $report->setCustomerDetails($customer);  
+        }
