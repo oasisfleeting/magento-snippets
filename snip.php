@@ -1,5 +1,3 @@
-
-
 ## Download extension manually using pear/mage ##
 Pear for 1.4, mage for 1.5. File downloaded into /downloader/.cache/community/
 
