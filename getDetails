@@ -1,3 +1,4 @@
+    ```
     class BuildReport {
 
         public $salesDetails;
@@ -97,3 +98,4 @@
             $customer = Mage::getModel('customer/customer')->load($orders->getData('customer_id'));
             $report->setCustomerDetails($customer);  
         }
+```
