@@ -116,6 +116,7 @@ cd ../
 cd Webgriffe_Golive/
 rm composer.lock
 composer install
+cd ../
 
 cd opsway-magerun-addons/
 rm composer.lock
