@@ -39,13 +39,14 @@ git clone https://github.com/steverobbins/magescan
 ##opsway
 git clone https://github.com/opsway/opsway-magerun-addons.git
 ##magento-security-toolkit
-git clone --recursive https://github.com/comitdevelopers/magento-security-toolkit.git
+git clone recursive https://github.com/comitdevelopers/magento-security-toolkit.git
 
 
 cd EAVCleaner/
 rm composer.lock
 composer install
 cd ../
+
 
 cd HarrisStreet-ImpEx/
 rm composer.lock
@@ -98,11 +99,6 @@ composer install
 cd ../
 
 cd mpmd/
-rm composer.lock
-composer install
-cd ../
-
-cd n98mods.sh/
 rm composer.lock
 composer install
 cd ../
