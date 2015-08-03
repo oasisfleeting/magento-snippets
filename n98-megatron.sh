@@ -1,10 +1,6 @@
-## n98-Megatron
-
-```
 #!/bin/bash
 
 mkdir -pv ~/.n98-magerun/modules/ && cd ~/.n98-magerun/modules/
-
 
 ##MageRun Addons by Kalen Jordan
 git clone https://github.com/kalenjordan/magerun-addons
@@ -145,4 +141,3 @@ cd ../
 
 
 find . -maxdepth 2 -type f -name 'composer*'  -exec ls -lhd  "{}" \; | sort
-```
