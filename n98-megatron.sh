@@ -129,5 +129,5 @@ composer install
 cd ../
 
 
-find . -maxdepth 2 -type f -name 'composer*'  -exec ls -lhd  {} \; | sort
+find . -maxdepth 2 -type f -name 'composer*'  -exec ls -lhd  "{}" \; | sort
 ```
