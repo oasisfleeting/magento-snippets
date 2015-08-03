@@ -48,7 +48,8 @@ git clone https://github.com/netz98/N98_CheckoutFilters.git
 git clone https://github.com/marcoandreini/magerun-dataprofile.git
 #xmlvalidation
 git clone https://github.com/KamilBalwierz/sxmlsv.git
-##magento-security-toolkit
+##magento-security-toolkit 
+## coming soon ??
 git clone --recursive https://github.com/comitdevelopers/magento-security-toolkit.git
 
 
