@@ -39,7 +39,7 @@ git clone https://github.com/steverobbins/magescan
 ##opsway
 git clone https://github.com/opsway/opsway-magerun-addons.git
 ##magento-security-toolkit
-git clone recursive https://github.com/comitdevelopers/magento-security-toolkit.git
+git clone --recursive https://github.com/comitdevelopers/magento-security-toolkit.git
 
 
 cd EAVCleaner/
