@@ -42,6 +42,12 @@ git clone https://github.com/magento-hackathon/EAVCleaner
 git clone https://github.com/steverobbins/magescan
 ##opsway
 git clone https://github.com/opsway/opsway-magerun-addons.git
+##n98-checkout-filters
+git clone https://github.com/netz98/N98_CheckoutFilters.git
+#dataprofile
+git clone https://github.com/marcoandreini/magerun-dataprofile.git
+#xmlvalidation
+git clone https://github.com/KamilBalwierz/sxmlsv.git
 ##magento-security-toolkit
 git clone --recursive https://github.com/comitdevelopers/magento-security-toolkit.git
 
@@ -50,7 +56,6 @@ cd EAVCleaner/
 rm composer.lock
 composer install
 cd ../
-
 
 cd HarrisStreet-ImpEx/
 rm composer.lock
@@ -123,6 +128,16 @@ composer install
 cd ../
 
 cd opsway-magerun-addons/
+rm composer.lock
+composer install
+cd ../
+
+cd N98-CheckoutFilters/
+rm composer.lock
+composer install
+cd ../
+
+cd sxmlsv/
 rm composer.lock
 composer install
 cd ../
