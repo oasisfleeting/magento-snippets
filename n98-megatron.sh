@@ -44,9 +44,24 @@ git clone https://github.com/netz98/N98_CheckoutFilters.git
 git clone https://github.com/marcoandreini/magerun-dataprofile.git
 #xmlvalidation
 git clone https://github.com/KamilBalwierz/sxmlsv.git
+##magemap
+
 ##magento-security-toolkit 
 ## coming soon ??
 git clone --recursive https://github.com/comitdevelopers/magento-security-toolkit.git
+
+
+#### build mage map
+echo 'buiding magemap';
+echo '________________'
+wget https://raw.github.com/AydinHassan/MagentoCoreMapper/master/build/mage-core-mapper.phar
+#Make executable
+chmod +x ./mage-core-mapper.phar
+#Move to path location, so you can execute it from anywhere
+echo '==================='
+echo 'moving magemap to /usr/local/bin/'
+mv ./mage-core-mapper.phar magemap
+sudo mv magemap /usr/local/bin/
 
 
 cd EAVCleaner/
