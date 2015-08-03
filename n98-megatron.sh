@@ -2,6 +2,11 @@
 
 ```
 #!/bin/bash
+cd /home/$USER/
+mkdir n98-magerun
+mkdir modules
+cd n98-magerun/modules
+
 ##MageRun Addons by Kalen Jordan
 git clone https://github.com/kalenjordan/magerun-addons
 mv magerun-addons kj-magerun-addons
@@ -39,7 +44,7 @@ git clone https://github.com/steverobbins/magescan
 ##opsway
 git clone https://github.com/opsway/opsway-magerun-addons.git
 ##magento-security-toolkit
-git clone --recursive https://github.com/comitdevelopers/magento-security-toolkit.git
+git clone recursive https://github.com/comitdevelopers/magento-security-toolkit.git
 
 
 cd EAVCleaner/
@@ -116,12 +121,12 @@ cd ../
 cd Webgriffe_Golive/
 rm composer.lock
 composer install
-cd ../
 
 cd opsway-magerun-addons/
 rm composer.lock
 composer install
 cd ../
+
 
 find . -maxdepth 2 -type f -name 'composer*'  -exec ls -lhd  {} \; | sort
 ```
