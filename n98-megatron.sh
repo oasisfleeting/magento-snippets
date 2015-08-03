@@ -2,10 +2,9 @@
 
 ```
 #!/bin/bash
-cd /home/$USER/
-mkdir n98-magerun
-mkdir modules
-cd n98-magerun/modules
+
+mkdir -pv ~/.n98-magerun/modules/ && cd ~/.n98-magerun/modules/
+
 
 ##MageRun Addons by Kalen Jordan
 git clone https://github.com/kalenjordan/magerun-addons
