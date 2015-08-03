@@ -122,4 +122,6 @@ cd opsway-magerun-addons/
 rm composer.lock
 composer install
 cd ../
+
+find . -maxdepth 2 -type f -name 'composer*'  -exec ls -lhd  {} \; | sort
 ```
